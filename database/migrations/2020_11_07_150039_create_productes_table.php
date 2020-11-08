@@ -14,11 +14,11 @@ class CreateProductesTable extends Migration
     public function up()
     {
         Schema::create('productes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nom', 128);
-            $table->string('proveedor',128);
-            $table->integer('stock');           
-            $table->integer('preu/u');
+            $table->id();
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->string('name', 128)->unique();
+            $table->string('provider',128)->nullable();
             $table->timestamps();
         });
     }
